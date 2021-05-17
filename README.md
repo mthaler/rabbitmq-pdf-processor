@@ -46,6 +46,12 @@ Open the URL `http://localhost:15672/` with a browser. A login screen should now
 
 ![Login](screenshots/login.jpg)
 
-The default user is *gues* and the default password is also *guest*. After login in, the following screen is shown:
+The default user is *guest and the default password is also *guest*. After login in, the following screen is shown:
 
 ![Web UI](screenshots/webui.jpg)
+
+It is a good idea to change the password of the *guest* user:
+
+```bash
+# rabbitmqctl change_password guest guest123
+```
