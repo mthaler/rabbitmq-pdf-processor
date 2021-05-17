@@ -56,7 +56,7 @@ It is a good idea to change the password of the *guest* user:
 # rabbitmqctl change_password guest new_password
 ```
 
-## Configure vhost
+## Configure pdf-processor vhost
 
 ```
 # rabbitmqctl add_vhost pdf-processor
