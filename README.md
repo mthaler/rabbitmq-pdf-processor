@@ -43,3 +43,5 @@ RabbitMQ instance.
 ```
 
 Open the URL `http://localhost:15672/` with a browser. A login screen should now be shown:
+
+![Login](screenshots/login.jpg)
