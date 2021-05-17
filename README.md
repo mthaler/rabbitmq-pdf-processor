@@ -55,3 +55,21 @@ It is a good idea to change the password of the *guest* user:
 ```bash
 # rabbitmqctl change_password guest new_password
 ```
+
+## Add Pika package
+
+[Pika](https://github.com/pika/pika) is a RabbitMQ library for Python.
+
+### Configure virtual environment
+
+To easily add packages with PyCharm without being super user, first configure a virtual environment. Open the settings dialog and select *Python Interpreter*:
+
+[Python Interpreter settings](screenshots/settings.jpg)
+
+Click on the gear icon and add a new Python virtual environment:
+
+[Python Virtual Environment](screenshots/add_python_interpreter.jpg)
+
+Now add the Pika package
+
+[Add Pika package](screenshots/add_pika_package.jpg)
