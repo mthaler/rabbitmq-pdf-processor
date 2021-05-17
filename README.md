@@ -1,4 +1,4 @@
-# pdf-processor
+# rabbitmq-pdf-processor
 PDF processor using RabbitMQ
 
 ## Install RabbitMQ
