@@ -1,2 +1,34 @@
 # pdf-processor
 PDF processor using RabbitMQ
+
+## Installing RabbitMQ
+
+On Debian Linux, execute the following command:
+
+```bash
+# apt-get install rabbitmq-server
+# systemctl enable rabbitmq-server
+# systemctl start rabbitmq-server
+# systemctl status rabbitmq-server
+```
+
+The last command should show output similar to
+
+```bash
+● rabbitmq-server.service - RabbitMQ Messaging Server
+     Loaded: loaded (/lib/systemd/system/rabbitmq-server.service; ena>
+     Active: active (running) since Mon 2021-05-17 08:22:46 CEST; 5mi>
+   Main PID: 7730 (beam.smp)
+     Status: "Initialized"
+      Tasks: 162 (limit: 19101)
+     Memory: 88.0M
+        CPU: 8.878s
+     CGroup: /system.slice/rabbitmq-server.service
+             ├─7730 /usr/lib/erlang/erts-11.1.8/bin/beam.smp -W w -K >
+             ├─7941 erl_child_setup 65536
+             ├─8015 inet_gethost 4
+             └─8016 inet_gethost 4
+
+May 17 08:22:42 tessa systemd[1]: Starting RabbitMQ Messaging Server.>
+May 17 08:22:46 tessa systemd[1]: Started RabbitMQ Messaging Server.
+```
