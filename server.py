@@ -1,4 +1,5 @@
 import argparse
+import os
 from textwrap import wrap
 
 import pika
@@ -42,9 +43,15 @@ def on_request(ch, method, props, body):
     create_pdf(body)
     file = open("/tmp/out.pdf", "rb")
     data = file.read()
+    os.remove("/tmp/out.pdf")
     ch.basic_publish(exchange='', routing_key=props.reply_to, properties=pika.BasicProperties(correlation_id=props.correlation_id), body=data)
     ch.basic_ack(delivery_tag=method.delivery_tag)
 
+
+# create a queue
+print('Creating queue')
+channel.queue_declare(queue='pdf-processor')
+print('Queue created')
 
 # set up subscription on the queue
 channel.basic_qos(prefetch_count=1)

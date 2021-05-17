@@ -1,11 +1,49 @@
 import argparse
+import uuid
 
 import pika
 
 
-# create a function which is called on incoming messages
-def callback(ch, method, properties, body):
-    print(body)
+class Client(object):
+
+    def __init__(self, params):
+        # connect to RabbitMQ broker
+        print('Connecting...')
+        self.connection = pika.BlockingConnection(params)
+        self.channel = self.connection.channel()
+        print('Connected')
+
+        result = self.channel.queue_declare(queue='', exclusive=True)
+        self.callback_queue = result.method.queue
+
+        # create a queue
+        print('Creating queue')
+        self.channel.queue_declare(queue='pdf-processor')
+        print('Queue created')
+
+        self.channel.basic_consume(
+            queue=self.callback_queue,
+            on_message_callback=self.on_response,
+            auto_ack=True)
+
+    def on_response(self, ch, method, props, body):
+        if self.corr_id == props.correlation_id:
+            self.response = body
+
+    def call(self, text):
+        self.response = None
+        self.corr_id = str(uuid.uuid4())
+        self.channel.basic_publish(
+            exchange='',
+            routing_key='pdf-processor',
+            properties=pika.BasicProperties(
+                reply_to=self.callback_queue,
+                correlation_id=self.corr_id,
+            ),
+            body=text.encode())
+        while self.response is None:
+            self.connection.process_data_events()
+        return self.response
 
 
 parser = argparse.ArgumentParser()
@@ -20,20 +58,12 @@ print(f'RabbitMQ URL: {url}')
 params = pika.URLParameters(url)
 params.socket_timeout = 5
 
-# connect to RabbitMQ broker
-print('Connecting...')
-connection = pika.BlockingConnection(params)
-channel = connection.channel()
-print('Connected')
-
-# Declare a queue
-print('Creating queue')
-channel.queue_declare(queue='pdf-process')
-print('Queue created')
-
 # Read our text
 f = open("tale_of_two_cities.txt", "r")
 text = f.read()
 
-channel.basic_publish(exchange='', routing_key='pdf-process', properties=pika.BasicProperties(reply_to=callback), body=text.encode())
-print("Message sent to consumer")
+pdf_processor_rpc = Client(params)
+response = pdf_processor_rpc.call(text)
+f = open("tale_of_two_cities.pdf", "wb")
+f.write(response)
+print(f'Written {f.name}')
