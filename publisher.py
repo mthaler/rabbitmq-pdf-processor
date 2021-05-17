@@ -25,5 +25,9 @@ print('Creating queue')
 channel.queue_declare(queue='pdf-process')
 print('Queue created')
 
-channel.basic_publish(exchange='', routing_key='pdf-process', body='User information')
+# Read our text
+f = open("tale_of_two_cities.txt", "r")
+text = f.read()
+
+channel.basic_publish(exchange='', routing_key='pdf-process', body=text)
 print("Message sent to consumer")
