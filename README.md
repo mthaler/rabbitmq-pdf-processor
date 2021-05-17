@@ -89,3 +89,7 @@ Click on the gear icon and add a new Python virtual environment:
 Now add the Pika package
 
 ![Add Pika package](screenshots/add_pika_package.jpg)
+
+## Add pdfkit package
+
+Install the [pdfkit](https://pypi.org/project/pdfkit/) package following the steps given above for the Pika package.
