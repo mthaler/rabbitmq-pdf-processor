@@ -56,6 +56,16 @@ It is a good idea to change the password of the *guest* user:
 # rabbitmqctl change_password guest new_password
 ```
 
+## Configure vhost
+
+```
+# rabbitmqctl add_vhost pdf-processor
+```
+
+Refresh the web UI. It should now show the pdf-processor vhost:
+
+![pdf-processor vhost](screenshots/pdf_processor_vhost.jpg)
+
 ## Add Pika package
 
 [Pika](https://github.com/pika/pika) is a RabbitMQ library for Python.
