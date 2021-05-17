@@ -2,6 +2,12 @@ import argparse
 
 import pika
 
+
+# create a function which is called on incoming messages
+def callback(ch, method, properties, body):
+    print(body)
+
+
 parser = argparse.ArgumentParser()
 parser.add_argument("user", help="RabbitMQ user")
 parser.add_argument("password", help="RabbitMQ password")
@@ -29,5 +35,5 @@ print('Queue created')
 f = open("tale_of_two_cities.txt", "r")
 text = f.read()
 
-channel.basic_publish(exchange='', routing_key='pdf-process', body=text)
+channel.basic_publish(exchange='', routing_key='pdf-process', properties=pika.BasicProperties(reply_to=callback), body=text.encode())
 print("Message sent to consumer")
