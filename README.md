@@ -45,3 +45,7 @@ RabbitMQ instance.
 Open the URL `http://localhost:15672/` with a browser. A login screen should now be shown:
 
 ![Login](screenshots/login.jpg)
+
+The default user is *gues* and the default password is also *guest*. After login in, the following screen is shown:
+
+![Web UI](screenshots/webui.jpg)
