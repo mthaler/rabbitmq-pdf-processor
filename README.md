@@ -53,5 +53,5 @@ The default user is *guest and the default password is also *guest*. After login
 It is a good idea to change the password of the *guest* user:
 
 ```bash
-# rabbitmqctl change_password guest guest123
+# rabbitmqctl change_password guest new_password
 ```
