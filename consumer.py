@@ -1,6 +1,22 @@
 import argparse
+import time
 
 import pika
+
+
+# create a function which is called on incoming messages
+def callback(ch, method, properties, body):
+    pdf_process_function(body)
+
+
+def pdf_process_function(msg):
+    print(" PDF processing")
+    print(" [x] Received " + str(msg))
+
+    time.sleep(5) # delays for 5 seconds
+    print(" PDF processing finished")
+    return
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument("user", help="RabbitMQ user")
@@ -20,10 +36,9 @@ connection = pika.BlockingConnection(params)
 channel = connection.channel()
 print('Connected')
 
-# Declare a queue
-print('Creating queue')
-channel.queue_declare(queue='pdf-process')
-print('Queue created')
+# set up subscription on the queue
+channel.basic_consume('pdf-process', callback, auto_ack=True)
 
-channel.basic_publish(exchange='', routing_key='pdf-process', body='User information')
-print("Message sent to consumer")
+# start consuming (blocks)
+channel.start_consuming()
+connection.close()
