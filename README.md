@@ -64,12 +64,12 @@ It is a good idea to change the password of the *guest* user:
 
 To easily add packages with PyCharm without being super user, first configure a virtual environment. Open the settings dialog and select *Python Interpreter*:
 
-[Python Interpreter settings](screenshots/settings.jpg)
+![Python Interpreter settings](screenshots/settings.jpg)
 
 Click on the gear icon and add a new Python virtual environment:
 
-[Python Virtual Environment](screenshots/add_python_interpreter.jpg)
+![Python Virtual Environment](screenshots/add_python_interpreter.jpg)
 
 Now add the Pika package
 
-[Add Pika package](screenshots/add_pika_package.jpg)
+![Add Pika package](screenshots/add_pika_package.jpg)
