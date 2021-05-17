@@ -66,6 +66,12 @@ Refresh the web UI. It should now show the pdf-processor vhost:
 
 ![pdf-processor vhost](screenshots/pdf_processor_vhost.jpg)
 
+Next we need to allow the guest user to access the *pdf-processor* vhost:
+
+```bash
+# rabbitmqctl set_permissions -p pdf-processor guest ".*" ".*" ".*"
+```
+
 ## Add Pika package
 
 [Pika](https://github.com/pika/pika) is a RabbitMQ library for Python.
