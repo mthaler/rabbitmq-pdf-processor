@@ -1,7 +1,7 @@
 # pdf-processor
 PDF processor using RabbitMQ
 
-## Installing RabbitMQ
+## Install RabbitMQ
 
 On Debian Linux, execute the following command:
 
@@ -32,3 +32,14 @@ The last command should show output similar to
 May 17 08:22:42 tessa systemd[1]: Starting RabbitMQ Messaging Server.>
 May 17 08:22:46 tessa systemd[1]: Started RabbitMQ Messaging Server.
 ```
+
+## Install management plugin
+
+RabbitMQ does not install a management console by default, but the optional web-based plugin makes it easy to peek into a running
+RabbitMQ instance.
+
+```bash
+#  rabbitmq-plugins enable rabbitmq_management
+```
+
+Open the URL `http://localhost:15672/` with a browser. A login screen should now be shown:
