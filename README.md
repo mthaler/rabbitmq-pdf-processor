@@ -1,6 +1,6 @@
 # rabbitmq-pdf-processor
 
-A simple PDF processor using RabbitMQ. The client reads some text and sends it to the server, which will create a PDF from the text and sends it back to the client. The client will then save the PDF.
+A simple PDF processor using RabbitMQ. The client reads some text and sends it to the server, which will create a PDF from the text and sends it back to the client. The client will then save the PDF in the working directory.
 
 ## Install RabbitMQ
 
@@ -100,3 +100,5 @@ Install the [ReportLab](https://www.reportlab.com/dev/opensource/rl-toolkit/) pa
 The RabbitMQ username and password need to be passed as command line arguments:
 
 ![Command line arguments](screenshots/command_line_arguments.jpg)
+
+First start the server, then the client.
